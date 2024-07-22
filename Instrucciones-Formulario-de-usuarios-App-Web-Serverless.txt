@@ -1,0 +1,70 @@
+PASO 1
+*-*-* Crear DynamoDB *-*-*
+Nombre: crud-items
+Partition key: id
+
+PASO 2
+*-*-* Crear policy para Lambdas *-*-*
+Nombre: access-to-dynamodb-table-users
+Permisos:  
+"dynamodb:PutItem",
+"dynamodb:DeleteItem",
+"dynamodb:Scan"
+
+PASO 3
+*-*-* Crear Lambdas *-*-*
+Nombres:
+- create_user
+- get_user
+- delete_user
+
+PASO 4
+*-*-* Crear API*-*-*
+Tipo: HTTP
+Nombre: crud-api
+
+PASO 5
+*-*-* Agregar policy a Lambda*-*-*
+Agregar "policy-access-to-dynamoDB" a la 
+Lambda
+ 
+PASO 6
+*-*-* Crear rutas de API *-*-*
+GET /items/{id}
+GET /items
+PUT /items
+DELETE /items/{id}
+El {id} es un parámetro de ruta que
+API Gateway recupera de la solicitud
+realizada por el cliente.
+
+PASO 7
+*-* Crear integraciones con API Gateway *-*
+Tipo de integración: funcion Lambda
+
+PASO 8
+*-* Conectar la integración con la ruta *-*
+Para todas las rutas se integra la misma
+función Lambda (crud-lambda)
+
+PASO 9
+*-*-* Testear la API*-*-*
+-Crear/actualizar un elemento
+curl -X "PUT" -H "Content-Type: application/json" -d "{\"id\": \"4\", \"price\": 400, \"name\": \"computadora\"}" https://459ers6yrb.execute-api.us-east-1.amazonaws.com/items
+
+-Ver todos los artículos de la tabla
+curl https://459ers6yrb.execute-api.us-east-1.amazonaws.com/items
+
+-Ver un artículo
+curl https://459ers6yrb.execute-api.us-east-1.amazonaws.com/items/1
+
+-Eliminar un artículo
+curl -X "DELETE" https://459ers6yrb.execute-api.us-east-1.amazonaws.com/items/1
+
+-Comprobar que el arículo se eliminó
+curl https://459ers6yrb.execute-api.us-east-1.amazonaws.com/items
+
+PASO 10
+*-*-* Eliminar los recursos *-*-*
+
+https://docs.aws.amazon.com/es_es/apigateway/latest/developerguide/http-api-dynamo-db.html
