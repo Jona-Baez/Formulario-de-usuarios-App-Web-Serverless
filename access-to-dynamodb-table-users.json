@@ -10,7 +10,7 @@
                 "dynamodb:Scan"
             ],
             "Resource": [
-                "arn:aws:dynamodb:us-east-1:ARNdelacenta:table/users"
+                "arn:aws:dynamodb:us-east-1:ARNdelacuenta:table/users"
             ]
         }
     ]
