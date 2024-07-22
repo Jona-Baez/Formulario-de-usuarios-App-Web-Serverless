@@ -1,6 +1,6 @@
 PASO 1
 *-*-* Crear DynamoDB *-*-*
-Nombre: crud-items
+Nombre: users
 Partition key: id
 
 PASO 2
@@ -13,30 +13,28 @@ Permisos:
 
 PASO 3
 *-*-* Crear Lambdas *-*-*
+Node.js 18.x
 Nombres:
-- create_user
-- get_user
-- delete_user
+- lambda_create_user
+- lambda_get_user
+- lambda_delete_user
 
 PASO 4
-*-*-* Crear API*-*-*
-Tipo: HTTP
-Nombre: crud-api
-
-PASO 5
 *-*-* Agregar policy a Lambda*-*-*
 Agregar "policy-access-to-dynamoDB" a la 
 Lambda
+
+PASO 5
+*-*-* Crear API*-*-*
+Tipo: HTTP
+Nombre: crud-api
  
 PASO 6
 *-*-* Crear rutas de API *-*-*
-GET /items/{id}
-GET /items
-PUT /items
+POST /create_user
+DELETE /delete_user
+GET /get_user
 DELETE /items/{id}
-El {id} es un parámetro de ruta que
-API Gateway recupera de la solicitud
-realizada por el cliente.
 
 PASO 7
 *-* Crear integraciones con API Gateway *-*
@@ -44,11 +42,11 @@ Tipo de integración: funcion Lambda
 
 PASO 8
 *-* Conectar la integración con la ruta *-*
-Para todas las rutas se integra la misma
-función Lambda (crud-lambda)
+Para todas las rutas se integra la
+Lambda corespondiente
 
 PASO 9
-*-*-* Testear la API*-*-*
+*-*-* Crear un bucket *-*-*
 -Crear/actualizar un elemento
 curl -X "PUT" -H "Content-Type: application/json" -d "{\"id\": \"4\", \"price\": 400, \"name\": \"computadora\"}" https://459ers6yrb.execute-api.us-east-1.amazonaws.com/items
 
