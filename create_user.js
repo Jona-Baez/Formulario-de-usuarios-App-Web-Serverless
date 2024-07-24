@@ -9,7 +9,8 @@ document.getElementById('userForm').addEventListener('submit', async (e) => {
     };
     if (confirm('¿Estás seguro de que deseas crear este usuario?')) {
         try {
-            const createResponse = await fetch('https://j50b1hri49.execute-api.us-east-1.amazonaws.com/create_user', {
+            //const createResponse = await fetch('Endpoint-del-API/create_user', {
+            const createResponse = await fetch('https://tx94oh0z53.execute-api.us-east-1.amazonaws.com/create_user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

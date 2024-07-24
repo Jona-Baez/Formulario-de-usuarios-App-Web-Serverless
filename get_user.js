@@ -1,7 +1,8 @@
 window.onload = async function() {
     try {
         // Realizar una solicitud para obtener los registros de la tabla "users"
-        const response = await fetch('https://j50b1hri49.execute-api.us-east-1.amazonaws.com/get_user');
+        //const response = await fetch('Endpoint-del-API/get_user');
+        const response = await fetch('https://tx94oh0z53.execute-api.us-east-1.amazonaws.com/get_user');
         const data = await response.json();
 
         // Obtener el elemento de selección de usuarios

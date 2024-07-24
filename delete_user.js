@@ -1,10 +1,11 @@
 window.onload = async function() {
     try {
         // Realizar una solicitud para obtener los registros de la tabla "users"
-        const response = await fetch('https://j50b1hri49.execute-api.us-east-1.amazonaws.com/get_user');
+        //const response = await fetch('Endpoint-del-API/get_user');
+        const response = await fetch('https://tx94oh0z53.execute-api.us-east-1.amazonaws.com/get_user');
         const data = await response.json();
 
-        // Obtener el elemento de selección de atletas
+        // Obtener el elemento de selección de usuarios
         const userSelect = document.getElementById('userSelect');
 
         // Iterar sobre los registros y agregar opciones al elemento de selección
@@ -64,7 +65,8 @@ window.onload = async function() {
 
             if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
                 try {
-                    const deleteResponse = await fetch(`https://j50b1hri49.execute-api.us-east-1.amazonaws.com/delete_user`, {
+                    //const deleteResponse = await fetch(`Endpoint-del-API/delete_user`, {
+                    const deleteResponse = await fetch(`https://tx94oh0z53.execute-api.us-east-1.amazonaws.com/delete_user`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',
@@ -88,7 +90,7 @@ window.onload = async function() {
             }
         });
     } catch (error) {
-        console.error('Error al obtener los registros de los atletas:', error);
-        alert('Ocurrió un error al obtener los registros de los atletas. Por favor, inténtalo de nuevo más tarde.');
+        console.error('Error al obtener los registros de los users:', error);
+        alert('Ocurrió un error al obtener los registros de los users. Por favor, inténtalo de nuevo más tarde.');
     }
 };

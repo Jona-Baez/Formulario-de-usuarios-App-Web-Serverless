@@ -27,42 +27,71 @@ Lambda
 PASO 5
 *-*-* Crear API*-*-*
 Tipo: HTTP
-Nombre: crud-api
+Nombre: users
  
 PASO 6
 *-*-* Crear rutas de API *-*-*
 POST /create_user
 DELETE /delete_user
 GET /get_user
-DELETE /items/{id}
 
 PASO 7
 *-* Crear integraciones con API Gateway *-*
 Tipo de integración: funcion Lambda
 
 PASO 8
-*-* Conectar la integración con la ruta *-*
+*-* Conectar la integraciónes con las rutas *-*
 Para todas las rutas se integra la
 Lambda corespondiente
 
 PASO 9
-*-*-* Crear un bucket *-*-*
--Crear/actualizar un elemento
-curl -X "PUT" -H "Content-Type: application/json" -d "{\"id\": \"4\", \"price\": 400, \"name\": \"computadora\"}" https://459ers6yrb.execute-api.us-east-1.amazonaws.com/items
-
--Ver todos los artículos de la tabla
-curl https://459ers6yrb.execute-api.us-east-1.amazonaws.com/items
-
--Ver un artículo
-curl https://459ers6yrb.execute-api.us-east-1.amazonaws.com/items/1
-
--Eliminar un artículo
-curl -X "DELETE" https://459ers6yrb.execute-api.us-east-1.amazonaws.com/items/1
-
--Comprobar que el arículo se eliminó
-curl https://459ers6yrb.execute-api.us-east-1.amazonaws.com/items
+*-*-* Agregar endpoint del API al codigo de S3 *-*-*
+create_user.js
+get_user.js
+delete_user.js x2
 
 PASO 10
-*-*-* Eliminar los recursos *-*-*
+*-*-* Agregar CORS en API*-*-*
+Access-Control-Allow-Origin : *
+Access-Control-Allow-Headers : *
+Access-Control-Expose-Headers : *
+Access-Control-Allow-Methods: GET, POST, DELETE
 
-https://docs.aws.amazon.com/es_es/apigateway/latest/developerguide/http-api-dynamo-db.html
+PASO 11
+*-*-* Crear bucket y cargar el codigo *-*-*
+Nombre: appwebformulario
+Configuraciones por defecto
+Cargar los archivos
+
+PASO 12
+*-*-* Editar bucket *-*-*
+Static website hosting: Enable
+Index document: index.html
+Obtener el endpoint del bucket
+Visitar el endpoint
+Public access: Enable
+Visitar el endpoint y actualizar
+Agregar la bucket policy temporal
+Visitar el endpoint y actualizar
+Probar el formulario
+
+PASO 13
+*-*-* Crear distribución de CloudFront *-*-*
+Origin domain: endpoint del bucket
+Origin access control settings: Enable
+Create new OAC
+Do not enable security protections
+Default root object: index.html
+Agergar el bucet policy definitivo
+
+PASO 14
+*-*-* Editar buket nuevamente *-*-*
+Copiar la bucket policy de CloudFront
+Public access: Disable
+Cambiar la bucket policy
+Obtener el endpoint de CloudFront
+Probar el formulario
+
+Endpoint S3:
+
+Endpoint CloudFront:
