@@ -2,7 +2,7 @@ window.onload = async function() {
     try {
         // Realizar una solicitud para obtener los registros de la tabla "users"
         //const response = await fetch('Endpoint-del-API/get_user');
-        const response = await fetch('https://tx94oh0z53.execute-api.us-east-1.amazonaws.com/get_user');
+        const response = await fetch('https://gi7xwz3se8.execute-api.us-east-1.amazonaws.com/get_user');
         const data = await response.json();
 
         // Obtener el elemento de selección de usuarios
@@ -66,7 +66,7 @@ window.onload = async function() {
             if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
                 try {
                     //const deleteResponse = await fetch(`Endpoint-del-API/delete_user`, {
-                    const deleteResponse = await fetch(`https://tx94oh0z53.execute-api.us-east-1.amazonaws.com/delete_user`, {
+                    const deleteResponse = await fetch(`https://gi7xwz3se8.execute-api.us-east-1.amazonaws.com/delete_user`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',

@@ -82,7 +82,7 @@ Origin access control settings: Enable
 Create new OAC
 Do not enable security protections
 Default root object: index.html
-Agergar el bucet policy definitivo
+Agregar el bucet policy definitivo
 
 PASO 14
 *-*-* Editar buket nuevamente *-*-*
@@ -93,5 +93,6 @@ Obtener el endpoint de CloudFront
 Probar el formulario
 
 Endpoint S3:
-
+http://appwebformulario.s3-website-us-east-1.amazonaws.com/index.html
 Endpoint CloudFront:
+https://d2lmc5mlv9kfnm.cloudfront.net
